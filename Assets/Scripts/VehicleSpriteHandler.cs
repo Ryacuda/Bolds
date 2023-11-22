@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class VehicleSpriteHandler : MonoBehaviour
@@ -33,22 +34,17 @@ public class VehicleSpriteHandler : MonoBehaviour
 		float angle = gameObject.GetComponent<VehicleMovement>().direction;
 
 		// index in the sprite sheet
-		int i = Mathf.FloorToInt(angle / number_of_cells);
+		int i = Mathf.FloorToInt( number_of_cells * (- (angle > 0 ? -2f * Mathf.PI + angle : angle)) / (2f * Mathf.PI)) ;
 
 		// position in the sprite sheet
-		int x = i % sheet_size;
-		int y = Mathf.FloorToInt(i / sheet_size);
+		int x = (i % sheet_size) - 3;
+		int y =  Mathf.FloorToInt( (i - x) / sheet_size ) - 3;
 
-		// pivot is center
-		x -= 3;
-		y -= 3;
+		float offset_unit = sprite_cell_size / pixel_per_unit;
 
-		Debug.Log(x);
-		Debug.Log(y);
+		sprite_offset = offset_unit * new Vector3(-x, y);
 
-		float mult = sprite_cell_size / pixel_per_unit;
-		sprite_offset = new Vector3(x * mult, y * mult);
-
+		// apply computed offset
 		sprite_transform.position = transform.position + sprite_offset;
 	}
 }

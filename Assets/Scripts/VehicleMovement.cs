@@ -6,9 +6,9 @@ using UnityEngine.UIElements;
 
 public class VehicleMovement : MonoBehaviour
 {
-	[SerializeField] private float turning_speed;       // deg/sec
+	[SerializeField] private float turning_speed;       // radians/sec
 	[SerializeField] private float max_speed;           // unit/sec
-	public float direction;								// deg
+	public float direction;								// radians
 
 	public float speed;                                 // unit/sec
 
@@ -26,6 +26,6 @@ public class VehicleMovement : MonoBehaviour
 
 		direction = Mathf.Atan2(desired_direction.y, desired_direction.x);
 
-        transform.position += Time.deltaTime * speed * desired_direction;
+        //transform.position += Time.deltaTime * speed * desired_direction;
 	}
 }

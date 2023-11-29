@@ -26,6 +26,6 @@ public class VehicleMovement : MonoBehaviour
 
 		direction = Mathf.Atan2(desired_direction.y, desired_direction.x);
 
-        //transform.position += Time.deltaTime * speed * desired_direction;
+        transform.position += Time.deltaTime * speed * desired_direction;
 	}
 }

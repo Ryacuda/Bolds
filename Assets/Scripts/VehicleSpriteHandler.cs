@@ -7,6 +7,7 @@ public class VehicleSpriteHandler : MonoBehaviour
 {
 	[SerializeField] private Vector3 sprite_offset;
 	private Transform sprite_transform;
+	private Transform collider_transform;
 
 	private float sprite_cell_size;
 	private int sheet_size;
@@ -17,9 +18,9 @@ public class VehicleSpriteHandler : MonoBehaviour
 	void Start()
 	{
 		sprite_transform = gameObject.transform.Find("sprite");
-
-		sprite_cell_size = 210;
-		sheet_size = 7;
+		collider_transform = gameObject.transform.Find("collider");
+        sheet_size = 7;
+        sprite_cell_size = ((int)sprite_transform.GetComponent<SpriteRenderer>().sprite.rect.height)/sheet_size;
 		number_of_cells = 48;
 		pixel_per_unit = 32;
 
@@ -46,5 +47,6 @@ public class VehicleSpriteHandler : MonoBehaviour
 
 		// apply computed offset
 		sprite_transform.position = transform.position + sprite_offset;
+		collider_transform.rotation = Quaternion.Euler(0, 0, 180f * angle / Mathf.PI);
 	}
 }

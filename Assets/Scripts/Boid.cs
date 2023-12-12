@@ -23,15 +23,19 @@ public class Boid : MonoBehaviour
 		
 	}
 
-	private void Rule1()
+	public float Rule1()
 	{
 		Vector2 p = new Vector2(transform.position.x, transform.position.y);
 
         // center of mass without self
         Vector2 others = boid_manager.center_of_mass - p / boid_manager.boid_list.Count;
 
+		//Debug.Log(others);
+
 		Vector2 dir = others - p;
 
-		vm_instance.ChangeDirection(dir);
+		//Debug.Log(dir);
+
+		return Mathf.Atan2(dir.y, dir.x);
 	}
 }

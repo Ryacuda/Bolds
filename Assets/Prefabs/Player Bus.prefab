@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4127875674625912366}
   - component: {fileID: 1304312530762344367}
   - component: {fileID: 6944407676855112454}
+  - component: {fileID: 2459748442677675957}
   m_Layer: 0
   m_Name: Player Bus
   m_TagString: Untagged
@@ -114,8 +115,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8a7d5f71ce194c4aa027461e65d8401, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turning_speed: 10
+  max_turning_angle: 2
   max_speed: 10
+  player: 1
   direction: 0
   speed: 10
 --- !u!210 &6944407676855112454
@@ -130,6 +132,19 @@ SortingGroup:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_SortAtRoot: 0
+--- !u!114 &2459748442677675957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5091874550140041202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 712a504796eb4e243896666ee3932edb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attraction_range: 0
 --- !u!1 &7856537871590731644
 GameObject:
   m_ObjectHideFlags: 0

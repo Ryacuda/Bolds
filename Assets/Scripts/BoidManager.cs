@@ -22,12 +22,15 @@ public class BoidManager : MonoBehaviour
 
 	private void UpdateCenterOfMass()
 	{
+		// clear the center of mass
 		center_of_mass = Vector2.zero;
 
 		foreach(Boid boid in boid_list)
 		{
 			center_of_mass += new Vector2(boid.transform.position.x, boid.transform.position.y);
 		}
+
+		//Debug.Log(boid_list.Count);
 
 		center_of_mass /= boid_list.Count;
 	}

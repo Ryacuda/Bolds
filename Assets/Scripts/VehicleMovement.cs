@@ -7,12 +7,12 @@ using UnityEngine.UIElements;
 public class VehicleMovement : MonoBehaviour
 {
 	[SerializeField] private float max_turning_angle;       // radians/sec
-	[SerializeField] private float max_speed;           // unit/sec
 	[SerializeField] private bool player;
 
 	public float direction;								// radians
 	public float speed;                                 // unit/sec
 
+	private int state;
 	private Boid boid_instance;
 
 	// Start is called before the first frame update
@@ -84,4 +84,81 @@ public class VehicleMovement : MonoBehaviour
 			}
 		}
 	}
+
+	public void SwitchState(int new_state)
+	{
+		switch(new_state)
+		{
+			case 1:		// become a ghost
+				switch(state)
+				{
+					case 1:
+						break;
+
+					case 2:
+						Boid.boid_list.Remove(gameObject.GetComponent<Boid>());
+						max_turning_angle /= 2;
+						break;
+
+					case 3:
+						Boid.boid_list.Remove(gameObject.GetComponent<Boid>());
+						speed /= 1.25f;
+						break;
+
+					default:
+						Boid.boid_list.Remove(gameObject.GetComponent<Boid>());
+						break;
+				}
+				break;
+
+			case 2:     // can turn much faster
+				switch (state)
+				{
+					case 1:
+						Boid.boid_list.Add(gameObject.GetComponent<Boid>());
+						max_turning_angle *= 2;
+						break;
+
+					case 2:
+						break;
+
+					case 3:
+						speed /= 1.25f;
+						max_turning_angle *= 2;
+						break;
+
+					default:
+						max_turning_angle *= 2;
+						break;
+				}
+				break;
+
+			case 3:
+				switch (state)
+				{
+					case 1:
+						Boid.boid_list.Add(gameObject.GetComponent<Boid>());
+						speed *= 1.25f;
+						break;
+
+					case 2:
+						max_turning_angle /= 2;
+						speed *= 1.25f;
+						break;
+
+					case 3:
+						break;
+
+					default:
+						speed *= 1.25f;
+						break;
+				}
+				break;
+
+			default : break;
+		}
+
+		state = new_state;
+	}
+
 }

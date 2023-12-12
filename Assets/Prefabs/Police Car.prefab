@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6923342557962513138}
   - component: {fileID: -6794485687612092441}
   - component: {fileID: 7055955202671128885}
+  - component: {fileID: -5539659092906902290}
   m_Layer: 0
   m_Name: Police Car
   m_TagString: Untagged
@@ -112,7 +113,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 712a504796eb4e243896666ee3932edb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attraction_range: 0
+  attraction_range: 30
+  repulsion_range: 3
+  alignment_range: 6
 --- !u!114 &7055955202671128885
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -125,11 +128,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8a7d5f71ce194c4aa027461e65d8401, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  max_turning_angle: 3
+  max_turning_angle: 5
   max_speed: 8
   player: 0
   direction: 0
-  speed: 0
+  speed: 8
+--- !u!114 &-5539659092906902290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6587624314589886123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fab1b5839bd5cce41928a7d7e3d0afef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprite_offset: {x: 0, y: 0, z: 0}
 --- !u!1 &6652888501547712175
 GameObject:
   m_ObjectHideFlags: 0

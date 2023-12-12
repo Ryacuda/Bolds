@@ -30,7 +30,13 @@ public class VehicleMovement : MonoBehaviour
 		}
 		else
 		{
-			ChangeDirection( boid_instance.Rule1() );
+			Vector2 new_dir = Vector2.zero;
+
+			new_dir += boid_instance.Rule1();
+			new_dir += boid_instance.Rule2();
+			new_dir += boid_instance.Rule3();
+
+			ChangeDirection(Mathf.Atan2(new_dir.y, new_dir.x));
 		}
 
 		Vector3 desired_direction = new Vector3(Mathf.Cos(direction), Mathf.Sin(direction), 0);
@@ -40,7 +46,6 @@ public class VehicleMovement : MonoBehaviour
 	private void PlayerMovement()
 	{
 		Vector3 desired_direction = Input.mousePosition - new Vector3(Screen.width / 2, Screen.height / 2, 0f);
-		desired_direction.Normalize();
 
 		float angle = Mathf.Atan2(desired_direction.y, desired_direction.x);
 
